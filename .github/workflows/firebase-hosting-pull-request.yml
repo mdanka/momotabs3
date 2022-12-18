@@ -13,6 +13,7 @@ jobs:
           lfs: 'true'
       - run: yarn install
       - run: yarn build
+      - run: yarn exec firebase experiments:enable webframeworks
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
