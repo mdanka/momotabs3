@@ -1,7 +1,13 @@
-export default function Page(props: {
+import { getSong } from "../../(backend)/backend";
+
+export default async function Page(props: {
     params: { songId: string };
 }) {
     const { params } = props;
     const { songId } = params;
-    return <h1>Page for {songId}</h1>;
+    const song = await getSong(songId);
+    if (song === undefined) {
+        return <div>{`Song ${songId} not found.`}</div>
+    }
+    return <h1>{JSON.stringify(song)}</h1>;
 }
